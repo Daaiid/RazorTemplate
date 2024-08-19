@@ -1,7 +1,9 @@
+using RazorTemplate.Db;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
 
@@ -21,5 +23,10 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+using (var context = new DataContext(app.Configuration))
+{
+    Seeding.Seed(context);
+}
 
 app.Run();
