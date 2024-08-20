@@ -1,0 +1,21 @@
+﻿@page
+@model RazorTemplate.Pages.Events
+@{
+    ViewData["Title"] = "Events";
+}
+
+<h1>Events</h1>
+<div class="container">
+    @foreach(var ev in Model.AllEvents)
+    {
+        <h2>@ev.Name</h2> 
+        <p>Start: @ev.Start</p>
+        
+        @foreach (var att in ev.Attendees)
+        {
+            <div class="container">
+                <p>@att.Name</p>
+            </div>
+        }
+    }
+</div>
